@@ -29,7 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -123,9 +123,9 @@ fun CreatePayrollScreen(
 
 @Composable
 private fun EmployeeInputRow(onAdd: (name: String, wagesText: String, isExempt: Boolean) -> Unit) {
-    var name by remember { mutableStateOf("") }
-    var wagesText by remember { mutableStateOf("") }
-    var isExempt by remember { mutableStateOf(false) }
+    var name by rememberSaveable { mutableStateOf("") }
+    var wagesText by rememberSaveable { mutableStateOf("") }
+    var isExempt by rememberSaveable { mutableStateOf(false) }
 
     Column(modifier = Modifier.padding(16.dp)) {
         OutlinedTextField(
