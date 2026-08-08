@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Payroll list -->
+    <string name="payroll_list_title">Payrolls</string>
+    <string name="payroll_list_create_content_description">Create payroll</string>
+    <string name="payroll_list_empty_title">No payrolls yet</string>
+    <string name="payroll_list_empty_message">Create your first payroll to see it here.</string>
+    <string name="payroll_list_empty_action">Create payroll</string>
+    <string name="payroll_list_load_error">Couldn\'t load payrolls.</string>
+    <plurals name="payroll_list_employee_count">
+        <item quantity="one">%d employee</item>
+        <item quantity="other">%d employees</item>
+    </plurals>
+
+    <!-- Create payroll -->
+    <string name="create_payroll_title">New payroll</string>
+    <string name="create_payroll_back_content_description">Back</string>
+    <string name="create_payroll_employee_name_label">Employee name</string>
+    <string name="create_payroll_wages_label">Wages</string>
+    <string name="create_payroll_exempt_label">Exempt</string>
+    <string name="create_payroll_add_employee">Add employee</string>
+    <string name="create_payroll_save">Save payroll</string>
+    <string name="create_payroll_remove_employee_content_description">Remove %1$s</string>
+    <string name="create_payroll_name_required">Name is required.</string>
+    <string name="create_payroll_wages_invalid">Enter a wage amount greater than zero.</string>
+    <string name="create_payroll_save_error">Couldn\'t save this payroll.</string>
+
+    <!-- Payroll detail -->
+    <string name="payroll_detail_title">Payroll detail</string>
+    <string name="payroll_detail_back_content_description">Back</string>
+    <string name="payroll_detail_not_found_title">Payroll not found</string>
+    <string name="payroll_detail_not_found_message">This payroll may have been removed.</string>
+    <string name="payroll_detail_load_error">Couldn\'t load this payroll.</string>
+    <string name="payroll_detail_label_total">Total</string>
+    <string name="payroll_detail_label_taxes">Taxes</string>
+    <string name="payroll_detail_label_net">Net</string>
+    <string name="payroll_detail_summary_title">Summary</string>
+    <string name="payroll_detail_label_total_taxes">Total Taxes</string>
+    <string name="payroll_detail_label_total_net">Total Net</string>
+</resources>
