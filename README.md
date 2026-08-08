@@ -71,11 +71,8 @@ Compose UI → ViewModel → Use Case → Repository (interface) → Repository 
 ```mermaid
 graph TD
     App[":app"]
-
-    subgraph Features
-        FeaturePayroll[":feature:payroll"]
-        FeatureAnother[":feature:another"]
-    end
+    FeaturePayroll[":feature:payroll"]
+    FeatureAnother[":feature:another"]
 
     subgraph Core Modules
         CoreDesignSystem[":core:designsystem"]
