@@ -1,4 +1,4 @@
-package com.connect.payroll.feature.detail
+package com.connect.payroll.feature.presentation.detail
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

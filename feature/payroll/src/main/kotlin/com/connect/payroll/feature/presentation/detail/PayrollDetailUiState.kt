@@ -1,4 +1,4 @@
-package com.connect.payroll.feature.detail
+package com.connect.payroll.feature.presentation.detail
 
 import com.connect.payroll.core.designsystem.text.UiText
 import com.connect.payroll.feature.domain.model.PayrollDetail

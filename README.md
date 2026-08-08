@@ -25,9 +25,8 @@ a per-employee tax breakdown.
 
 ```bash
 git clone <repo-url> && cd Payroll
-./gradlew installDebug              # build + install on a connected device/emulator
-./gradlew test                      # run local unit tests
-./gradlew connectedDebugAndroidTest # run the Room DAO instrumented test (needs a connected device/emulator)
+./gradlew installDebug # build + install on a connected device/emulator
+./gradlew test         # run local unit tests
 ```
 
 Requires JDK 17 and an Android SDK with the `compileSdk 37` platform installed. No API keys or
@@ -110,26 +109,17 @@ graph LR
 ```
 
 Bold/solid arrows are real, in-use dependencies. Dashed nodes and arrows are built and compile but
-nothing in the app's build reaches them yet:
+nothing in the app's build reaches them yet
 
-- **`:feature:another`** only depends on `:core:designsystem` today; `:core:common` and `:core:network`
-  are dashed because nothing in the module uses them yet. It's also not reachable at all from `:app`
-  — `:app` doesn't depend on `:feature:another`, so it's not part of the installed app, only
-  buildable directly.
-- **`:core:network`** has no project dependencies today. Both dashed arrows into it show where it
-  *would* plug in — a feature adding a Retrofit service interface on top of its shared
-  `Retrofit`/`OkHttpClient`/`Json` — once there's a real backend to call. `:feature:payroll`'s
-  `PayrollRemoteDataSource` is still `FakeRemoteDataSource` only, so neither edge exists yet.
-
-| Module | Responsibility |
-|---|---|
-| `:feature:payroll` | Everything payroll: Compose screens/ViewModels/UiStates, the `PayrollRepository` interface and its implementation, Room entities/DAO, the mocked remote data source, and Hilt bindings for all of it. |
-| `:feature:another` | An intentionally empty module — proof the module template scales to a second feature with no extra setup. |
-| `:core:model` | `Money`, a `BigDecimal`-backed value type. The one thing genuinely shared across any future feature. Depends on nothing. |
-| `:core:common` | Hilt dispatcher qualifiers (`@Dispatcher(PayrollDispatcher.IO/Default)`) — cross-cutting DI utility, no business logic. |
-| `:core:network` | A shared `Retrofit`/`OkHttpClient`/`Json` (Hilt-provided) that any feature can build an API interface against. Not consumed by anything yet — payroll's remote data is fully mocked, so there's no real endpoint to call. |
-| `:core:designsystem` | `PayrollTheme` (Material 3, dynamic color) and shared Compose components (`LoadingState`, `EmptyState`, `ErrorState`, `MoneyText`). |
-| `:app` | Composition root — `@HiltAndroidApp`, `MainActivity`, `AppNavHost`, and `AppDatabase` (the app's one Room database). |
+| Module               | Responsibility                                                                                                                                                                                                            |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `:feature:payroll`   | Everything payroll: Compose screens/ViewModels/UiStates, the `PayrollRepository` interface and its implementation, Room entities/DAO, the mocked remote data source, and Hilt bindings for all of it.                     |
+| `:feature:another`   | An intentionally empty module — proof the module template scales to a second feature with no extra setup.                                                                                                                 |
+| `:core:model`        | `Money`, a `BigDecimal`-backed value type. The one thing genuinely shared across any future feature. Depends on nothing.                                                                                                  |
+| `:core:common`       | Hilt dispatcher qualifiers (`@Dispatcher(PayrollDispatcher.IO/Default)`) — cross-cutting DI utility, no business logic.                                                                                                   |
+| `:core:network`      | A shared `Retrofit`/`OkHttpClient`/`Json` (Hilt-provided) that any feature can build an API interface against. Not consumed by anything yet — payroll's remote data is fully mocked, so there's no real endpoint to call. |
+| `:core:designsystem` | `PayrollTheme` (Material 3, dynamic color) and shared Compose components (`LoadingState`, `EmptyState`, `ErrorState`, `MoneyText`).                                                                                       |
+| `:app`               | Composition root — `@HiltAndroidApp`, `MainActivity`, `AppNavHost`, and `AppDatabase` (the app's one Room database).                                                                                                      |
 
 ---
 

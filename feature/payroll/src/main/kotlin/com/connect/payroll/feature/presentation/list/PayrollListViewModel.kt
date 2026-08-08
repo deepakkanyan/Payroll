@@ -1,4 +1,4 @@
-package com.connect.payroll.feature.list
+package com.connect.payroll.feature.presentation.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

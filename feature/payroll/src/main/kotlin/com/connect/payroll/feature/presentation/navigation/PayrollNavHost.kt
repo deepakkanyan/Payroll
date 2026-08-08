@@ -1,12 +1,12 @@
-package com.connect.payroll.feature.navigation
+package com.connect.payroll.feature.presentation.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.connect.payroll.feature.create.CreatePayrollScreen
-import com.connect.payroll.feature.detail.PayrollDetailScreen
-import com.connect.payroll.feature.list.PayrollListScreen
+import com.connect.payroll.feature.presentation.create.CreatePayrollScreen
+import com.connect.payroll.feature.presentation.detail.PayrollDetailScreen
+import com.connect.payroll.feature.presentation.list.PayrollListScreen
 
 /**
  * Owns all cross-screen navigation. The list/create/detail packages in :feature never

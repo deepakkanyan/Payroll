@@ -3,8 +3,8 @@ package com.connect.payroll.navHost
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.connect.payroll.feature.navigation.PayrollGraph
-import com.connect.payroll.feature.navigation.payrollNavHost
+import com.connect.payroll.feature.presentation.navigation.PayrollGraph
+import com.connect.payroll.feature.presentation.navigation.payrollNavHost
 
 @Composable
 fun AppNavHost() {

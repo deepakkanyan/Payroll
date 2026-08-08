@@ -1,4 +1,4 @@
-package com.connect.payroll.feature.detail
+package com.connect.payroll.feature.presentation.detail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -7,7 +7,7 @@ import androidx.navigation.toRoute
 import com.connect.payroll.core.designsystem.text.UiText
 import com.connect.payroll.feature.domain.usecase.GetPayrollDetailUseCase
 import com.connect.payroll.feature.R
-import com.connect.payroll.feature.navigation.PayrollDetailRoute
+import com.connect.payroll.feature.presentation.navigation.PayrollDetailRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted

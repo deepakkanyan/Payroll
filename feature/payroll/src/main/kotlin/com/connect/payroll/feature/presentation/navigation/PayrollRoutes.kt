@@ -1,4 +1,4 @@
-package com.connect.payroll.feature.navigation
+package com.connect.payroll.feature.presentation.navigation
 
 import kotlinx.serialization.Serializable
 

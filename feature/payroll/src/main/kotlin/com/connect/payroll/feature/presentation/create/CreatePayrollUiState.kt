@@ -1,4 +1,4 @@
-package com.connect.payroll.feature.create
+package com.connect.payroll.feature.presentation.create
 
 import com.connect.payroll.core.designsystem.text.UiText
 import com.connect.payroll.feature.domain.model.NewEmployee
