@@ -70,28 +70,52 @@ Compose UI → ViewModel → Use Case → Repository (interface) → Repository 
 
 ```mermaid
 graph TD
-    App[":app"] --> FeaturePayroll[":feature:payroll"]
-    App --> CoreDesignSystem[":core:designsystem"]
-    FeaturePayroll --> CoreModel[":core:model"]
-    FeaturePayroll --> CoreCommon[":core:common"]
-    FeaturePayroll --> CoreDesignSystem
-    CoreDesignSystem --> CoreModel
-    FeatureAnother[":feature:another"] --> CoreDesignSystem
-    CoreNetwork[":core:network"]
+    App[":app"]
 
-    style CoreModel fill:#2b6cb0,color:#fff
-    style FeatureAnother stroke-dasharray: 5 5
-    style CoreNetwork stroke-dasharray: 5 5
+    subgraph Features [" "]
+        direction LR
+        FeaturePayroll[":feature:payroll"]
+        FeatureAnother[":feature:another"]
+    end
+
+    subgraph Core [" "]
+        direction LR
+        CoreDesignSystem[":core:designsystem"]
+        CoreModel[":core:model"]
+        CoreCommon[":core:common"]
+        CoreNetwork[":core:network"]
+    end
+
+    App ==> FeaturePayroll
+    App ==> CoreDesignSystem
+
+    FeaturePayroll ==> CoreModel
+    FeaturePayroll ==> CoreCommon
+    FeaturePayroll ==> CoreDesignSystem
+    FeaturePayroll -.->|not yet wired| CoreNetwork
+
+    FeatureAnother -.->|not yet wired| CoreCommon
+    FeatureAnother ==> CoreDesignSystem
+
+    CoreDesignSystem ==> CoreModel
+
+    classDef core fill:#2b6cb0,color:#fff,stroke:#1a4971,stroke-width:1px
+    classDef planned stroke-dasharray:4 3,stroke-width:2px
+    class CoreModel core
+    class FeatureAnother,CoreNetwork planned
+    linkStyle default stroke-width:2px
 ```
 
-Solid edges are real, in-use dependencies. The dashed nodes are built and compile but nothing in
-the app's build reaches them yet:
+Bold/solid arrows are real, in-use dependencies. Dashed nodes and arrows are built and compile but
+nothing in the app's build reaches them yet:
 
-- **`:feature:another`** depends on `:core:designsystem`, but `:app` doesn't depend on `:feature:another`
-  — it's not part of the installed app, only reachable by building that module directly.
-- **`:core:network`** has no project dependencies and no dependents — it's a standalone Hilt module
-  (`Retrofit`/`OkHttpClient`/`Json`) that compiles and is unit-tested on its own, waiting for a
-  feature to consume it.
+- **`:feature:another`** only depends on `:core:designsystem` today; `:core:common` is dashed because
+  nothing in the module uses it yet. It's also not reachable at all from `:app` — `:app` doesn't
+  depend on `:feature:another`, so it's not part of the installed app, only buildable directly.
+- **`:core:network`** has no project dependencies today. The dashed arrow shows where it *would*
+  plug in — `:feature:payroll` adding a Retrofit service interface on top of its shared
+  `Retrofit`/`OkHttpClient`/`Json` — once there's a real backend to call. `PayrollRemoteDataSource`
+  is still `FakeRemoteDataSource` only, so this edge doesn't exist yet.
 
 | Module | Responsibility |
 |---|---|
