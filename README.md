@@ -76,11 +76,22 @@ graph TD
     FeaturePayroll --> CoreCommon[":core:common"]
     FeaturePayroll --> CoreDesignSystem
     CoreDesignSystem --> CoreModel
+    FeatureAnother[":feature:another"] --> CoreDesignSystem
+    CoreNetwork[":core:network"]
+
     style CoreModel fill:#2b6cb0,color:#fff
+    style FeatureAnother stroke-dasharray: 5 5
+    style CoreNetwork stroke-dasharray: 5 5
 ```
 
-`:core:network` and `:feature:another` exist but aren't wired into the graph above — see the table
-below for why.
+Solid edges are real, in-use dependencies. The dashed nodes are built and compile but nothing in
+the app's build reaches them yet:
+
+- **`:feature:another`** depends on `:core:designsystem`, but `:app` doesn't depend on `:feature:another`
+  — it's not part of the installed app, only reachable by building that module directly.
+- **`:core:network`** has no project dependencies and no dependents — it's a standalone Hilt module
+  (`Retrofit`/`OkHttpClient`/`Json`) that compiles and is unit-tested on its own, waiting for a
+  feature to consume it.
 
 | Module | Responsibility |
 |---|---|
