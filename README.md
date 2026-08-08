@@ -69,36 +69,34 @@ Compose UI → ViewModel → Use Case → Repository (interface) → Repository 
 ```
 
 ```mermaid
-graph TD
-    App[":app"]
-    FeaturePayroll[":feature:payroll"]
-    FeatureAnother[":feature:another"]
+%%{ init: { "flowchart": { "curve": "linear" } } }%%
+graph LR
+    App([":app"]):::app
 
-    subgraph Core Modules
-        CoreDesignSystem[":core:designsystem"]
-        CoreModel[":core:model"]
-        CoreCommon[":core:common"]
-        CoreNetwork[":core:network"]
-    end
+    FeaturePayroll[":feature:payroll"]:::feature
+    FeatureAnother[":feature:another"]:::planned
+
+    CoreDesignSystem[":core:designsystem"]:::core
+    CoreCommon[":core:common"]:::core
+    CoreModel[":core:model"]:::core
+    CoreNetwork[":core:network"]:::planned
 
     App ==> FeaturePayroll
     App ==> CoreDesignSystem
 
     FeaturePayroll ==> CoreDesignSystem
-    FeaturePayroll ==> CoreModel
     FeaturePayroll ==> CoreCommon
-    FeaturePayroll -.->|not yet wired| CoreNetwork
-
+    FeaturePayroll ==> CoreModel
     FeatureAnother ==> CoreDesignSystem
-    FeatureAnother -.->|not yet wired| CoreCommon
-    FeatureAnother -.->|not yet wired| CoreNetwork
-
     CoreDesignSystem ==> CoreModel
 
-    classDef core fill:#2b6cb0,color:#fff,stroke:#1a4971,stroke-width:1px
-    classDef planned stroke-dasharray:4,3,stroke-width:2px
-    class CoreModel core
-    class FeatureAnother,CoreNetwork planned
+    FeaturePayroll -.-> CoreNetwork
+    FeatureAnother -.-> CoreNetwork
+
+    classDef app     fill:#7c3aed,color:#fff,stroke:#5b21b6
+    classDef feature fill:#0f766e,color:#fff,stroke:#0b5a54
+    classDef core    fill:#1d4ed8,color:#fff,stroke:#1a3fa8
+    classDef planned fill:#6b7280,color:#fff,stroke:#4b5563,stroke-dasharray:4 3
 ```
 
 Bold/solid arrows are real, in-use dependencies. Dashed nodes and arrows are built and compile but
