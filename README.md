@@ -11,6 +11,16 @@ a per-employee tax breakdown.
 
 ---
 
+
+## Tools Used
+
+- **Android Studio** — primary IDE
+- **Git** — version control
+- **Gradle (Kotlin DSL)** — build system
+- **Claude Code** (Anthropic's CLI agent) — architecture work and refactoring passes during development
+
+---
+
 ## Run It
 
 ```bash
@@ -175,12 +185,6 @@ implementation, and any Compose UI tests. No CI or static analysis configured.
 
 ---
 
-## Tools Used
-
-Android Studio, Git, Gradle (Kotlin DSL) — and Claude Code (Anthropic's CLI agent) for
-architecture work and refactoring passes during development.
-
----
 
 ## If I Had More Time
 
