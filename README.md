@@ -72,14 +72,12 @@ Compose UI → ViewModel → Use Case → Repository (interface) → Repository 
 graph TD
     App[":app"]
 
-    subgraph Features [" "]
-        direction LR
+    subgraph Features
         FeaturePayroll[":feature:payroll"]
         FeatureAnother[":feature:another"]
     end
 
-    subgraph Core [" "]
-        direction LR
+    subgraph Core Modules
         CoreDesignSystem[":core:designsystem"]
         CoreModel[":core:model"]
         CoreCommon[":core:common"]
@@ -89,22 +87,21 @@ graph TD
     App ==> FeaturePayroll
     App ==> CoreDesignSystem
 
+    FeaturePayroll ==> CoreDesignSystem
     FeaturePayroll ==> CoreModel
     FeaturePayroll ==> CoreCommon
-    FeaturePayroll ==> CoreDesignSystem
     FeaturePayroll -.->|not yet wired| CoreNetwork
 
+    FeatureAnother ==> CoreDesignSystem
     FeatureAnother -.->|not yet wired| CoreCommon
     FeatureAnother -.->|not yet wired| CoreNetwork
-    FeatureAnother ==> CoreDesignSystem
 
     CoreDesignSystem ==> CoreModel
 
     classDef core fill:#2b6cb0,color:#fff,stroke:#1a4971,stroke-width:1px
-    classDef planned stroke-dasharray:4 3,stroke-width:2px
+    classDef planned stroke-dasharray:4,3,stroke-width:2px
     class CoreModel core
     class FeatureAnother,CoreNetwork planned
-    linkStyle default stroke-width:2px
 ```
 
 Bold/solid arrows are real, in-use dependencies. Dashed nodes and arrows are built and compile but
