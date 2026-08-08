@@ -95,6 +95,7 @@ graph TD
     FeaturePayroll -.->|not yet wired| CoreNetwork
 
     FeatureAnother -.->|not yet wired| CoreCommon
+    FeatureAnother -.->|not yet wired| CoreNetwork
     FeatureAnother ==> CoreDesignSystem
 
     CoreDesignSystem ==> CoreModel
@@ -109,13 +110,14 @@ graph TD
 Bold/solid arrows are real, in-use dependencies. Dashed nodes and arrows are built and compile but
 nothing in the app's build reaches them yet:
 
-- **`:feature:another`** only depends on `:core:designsystem` today; `:core:common` is dashed because
-  nothing in the module uses it yet. It's also not reachable at all from `:app` — `:app` doesn't
-  depend on `:feature:another`, so it's not part of the installed app, only buildable directly.
-- **`:core:network`** has no project dependencies today. The dashed arrow shows where it *would*
-  plug in — `:feature:payroll` adding a Retrofit service interface on top of its shared
-  `Retrofit`/`OkHttpClient`/`Json` — once there's a real backend to call. `PayrollRemoteDataSource`
-  is still `FakeRemoteDataSource` only, so this edge doesn't exist yet.
+- **`:feature:another`** only depends on `:core:designsystem` today; `:core:common` and `:core:network`
+  are dashed because nothing in the module uses them yet. It's also not reachable at all from `:app`
+  — `:app` doesn't depend on `:feature:another`, so it's not part of the installed app, only
+  buildable directly.
+- **`:core:network`** has no project dependencies today. Both dashed arrows into it show where it
+  *would* plug in — a feature adding a Retrofit service interface on top of its shared
+  `Retrofit`/`OkHttpClient`/`Json` — once there's a real backend to call. `:feature:payroll`'s
+  `PayrollRemoteDataSource` is still `FakeRemoteDataSource` only, so neither edge exists yet.
 
 | Module | Responsibility |
 |---|---|
